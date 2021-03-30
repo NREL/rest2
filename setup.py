@@ -62,7 +62,6 @@ setup(
     packages=find_packages(),
     package_dir={"rest2": "rest2"},
     include_package_data=True,
-    license="BSD 3-Clause",
     zip_safe=False,
     keywords="rest2",
     python_requires='>=3.6',
