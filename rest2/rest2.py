@@ -30,11 +30,12 @@ c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '''
 import collections
 import concurrent.futures as cf
-import farms.utilities as ut
-from farms import SOLAR_CONSTANT, SZA_LIM
 import gc
 import numpy as np
 from warnings import warn
+
+import farms.utilities as ut
+from farms import SOLAR_CONSTANT, SZA_LIM
 
 
 def op_mass(p, am, cosz, z):
