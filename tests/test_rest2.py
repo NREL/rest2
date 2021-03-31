@@ -6,7 +6,6 @@ Created on Feb 13th 2019
 
 @author: gbuster
 """
-from farms.utilities import ti_to_radius, calc_beta, dark_night
 import h5py
 import numpy as np
 import os
@@ -15,14 +14,16 @@ import pytest
 import time
 from warnings import warn
 
-from rest2 import rest2, rest2_tddclr, rest2_tuuclr
+from farms.utilities import ti_to_radius, calc_beta, dark_night
+
+from rest2 import TESTDATADIR
+from rest2.rest2 import rest2, rest2_tddclr, rest2_tuuclr
 
 RTOL = 0.001
 ATOL = 0.001
 
-BASE_DIR = os.path.dirname(__file__)
-TEST_FILE = os.path.join(BASE_DIR,
-                         './data/validation_nsrdb/nsrdb_surfrad_2017.h5')
+TEST_FILE = os.path.join(TESTDATADIR,
+                         'validation_nsrdb/nsrdb_surfrad_2017.h5')
 
 
 @pytest.mark.parametrize('angle', (84.2608, 72.5424, 60.0000, 45.5730, 25.8419,
@@ -51,7 +52,7 @@ def test_rest2_tddclr(angle):
     print('Testing rest2_tddclr on data shape {0} took {1:.1f} seconds.'
           .format(p.shape, time.time() - t0))
 
-    h5 = os.path.join(BASE_DIR, "./data/rest2/rest2_Tddclr.h5")
+    h5 = os.path.join(TESTDATADIR, "rest2_Tddclr.h5")
 
     dset = 'tddclr_{}'.format(angle)
     with h5py.File(h5, 'a') as f:
@@ -92,7 +93,7 @@ def test_rest2_tuuclr():
     print('Testing rest2_tuuclr on data shape {0} took {1:.1f} seconds.'
           .format(p.shape, time.time() - t0))
 
-    h5 = os.path.join(BASE_DIR, "./data/rest2/rest2_Tuuclr.h5")
+    h5 = os.path.join(TESTDATADIR, "rest2_Tuuclr.h5")
 
     if os.path.exists(h5):
         with h5py.File(h5, 'r') as f:
@@ -153,7 +154,7 @@ def test_rest2():
     for var in check_vars:
         data = getattr(rest_data, var)[:, 0:10]
 
-        h5 = os.path.join(BASE_DIR, "./data/rest2/rest2.h5".format(var))
+        h5 = os.path.join(TESTDATADIR, "rest2.h5".format(var))
 
         with h5py.File(h5, 'a') as f:
 
