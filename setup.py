@@ -52,7 +52,7 @@ description = ("REST2 is the High-performance solar radiation model for "
                "photosynthetically active radiation")
 
 setup(
-    name="rest2",
+    name="NREL-rest2",
     version=version,
     description=description,
     long_description=readme,
