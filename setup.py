@@ -9,8 +9,6 @@ from subprocess import check_call
 import shlex
 from warnings import warn
 
-from rest2 import __version__ as version
-
 
 class PostDevelopCommand(develop):
     """
@@ -42,6 +40,11 @@ with open("README.md", encoding="utf-8") as readme_file:
 
 with open("requirements.txt") as f:
     install_requires = f.readlines()
+
+with open(os.path.join(here, "reVX", "version.py"), encoding="utf-8") as f:
+    version = f.read()
+
+version = version.split('=')[-1].strip().strip('"').strip("'")
 
 test_requires = ["pytest>=5.2", ]
 description = ("REST2 is the High-performance solar radiation model for "
