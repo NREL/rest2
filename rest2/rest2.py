@@ -32,7 +32,6 @@ import collections
 import concurrent.futures as cf
 import gc
 import numpy as np
-from warnings import warn
 
 from farms import SOLAR_CONSTANT, SZA_LIM
 import farms.utilities as ut
@@ -459,8 +458,7 @@ def rest2(p, albedo, ssa, g, z, radius, alpha, beta, ozone, w,
     Parameters
     ----------
     p : np.ndarray
-        Surface pressure (mbar). If the range is very high, Pa are implied and
-        the array is scaled to mbar with a warning.(mbar is same as hPa)
+        Surface pressure (mbar). (mbar is same as hPa)
     albedo : np.ndarray
         Ground albedo.
     ssa : np.ndarray
@@ -515,12 +513,6 @@ def rest2(p, albedo, ssa, g, z, radius, alpha, beta, ozone, w,
     """
     # enforce ceiling on solar zenith angle
     z = np.where(z > sza_lim, sza_lim, z)
-
-    if np.max(p) > 10000:
-        # greater than 10 atmospheres in Pa, must be mbar(mbar is same as hPa)
-        warn('Surface pressure greater than 10,000. Assuming this was input '
-             'as Pascal instead of mbar. Scaling by 0.01 to convert to mbar')
-        p *= 0.01
 
     # Constants
     degrad = 0.017453293
@@ -653,8 +645,7 @@ def rest2_tddclr(p, albedo, ssa, z, radius, alpha, beta, ozone, w,
     Parameters
     ----------
     p : np.ndarray
-        Surface pressure (mbar). If the range is very high, Pa are implied and
-        the array is scaled to mbar with a warning.(mbar is same as hPa)
+        Surface pressure (mbar). (mbar is same as hPa)
     albedo : np.ndarray
         Ground albedo.
     ssa : np.ndarray
@@ -706,12 +697,6 @@ def rest2_tddclr(p, albedo, ssa, z, radius, alpha, beta, ozone, w,
     # enforce ceiling on solar zenith angle
     z = np.where(z > sza_lim, sza_lim, z)
 
-    if np.max(p) > 10000:
-        # greater than 10 atmospheres in Pa, must be mbar(mbar is same as hPa)
-        warn('Surface pressure greater than 10,000. Assuming this was input '
-             'as Pascal instead of mbar. Scaling by 0.01 to convert to mbar')
-        p *= 0.01
-
     # Constants
     degrad = 0.017453293
     f1 = 0.47244
@@ -744,7 +729,7 @@ def rest2_tddclr(p, albedo, ssa, z, radius, alpha, beta, ozone, w,
     transr2, trang2, tranw2 = trans_2(p, am, cosz, z, w)
 
     # clear some variables to free memory
-    del p, am, cosz, z, w
+    del am, cosz, z, w
 
     # New aerosol functions in v9
     ambeta = masa * beta
