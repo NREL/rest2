@@ -9,6 +9,8 @@ from subprocess import check_call
 import shlex
 from warnings import warn
 
+from rest2 import __version__ as version
+
 
 class PostDevelopCommand(develop):
     """
@@ -37,11 +39,6 @@ here = os.path.abspath(os.path.dirname(__file__))
 
 with open("README.md", encoding="utf-8") as readme_file:
     readme = convert_text(readme_file.read(), "md", format="md")
-
-with open(os.path.join(here, "rest2", "version.py"), encoding="utf-8") as f:
-    version = f.read()
-
-version = version.split('=')[-1].strip().strip('"').strip("'")
 
 with open("requirements.txt") as f:
     install_requires = f.readlines()
