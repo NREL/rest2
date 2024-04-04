@@ -1,7 +1,8 @@
 # Welcome to the REST2 model!
 
 REST2 is the High-performance solar radiation model for cloudless-sky
-irradiance, illuminance, and photosynthetically active radiation.
+irradiance, illuminance, and photosynthetically active radiation. 
+NREL Software record: SWR-23-96
 
 ## References
 Christian A. Gueymard, "REST2: High-performance solar radiation model
