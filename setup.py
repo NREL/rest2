@@ -36,8 +36,8 @@ except ImportError:
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with open("README.md", encoding="utf-8") as readme_file:
-    readme = convert_text(readme_file.read(), "md", format="md")
+with open("README.rst", encoding="utf-8") as readme_file:
+    readme = convert_text(readme_file.read(), "rst", format="rst")
 
 with open("requirements.txt") as f:
     install_requires = f.readlines()
