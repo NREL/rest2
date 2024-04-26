@@ -66,7 +66,6 @@ setup(
     keywords="rest2",
     python_requires='>=3.6',
     classifiers=[
-        "Development Status :: Beta",
         "Intended Audience :: Modelers",
         "License :: OSI Approved :: BSD License",
         "Natural Language :: English",
