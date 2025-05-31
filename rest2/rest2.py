@@ -1,4 +1,4 @@
-'''
+"""
 @author: Anthony Lopez
 January 27, 2015
 
@@ -27,14 +27,14 @@ c NOTE 2: The input sanity check on lines 112-120 of the code may be
 c         superfluous if the inputs have been tested in a previous step.
 c
 c++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-'''
+"""
 import collections
 import concurrent.futures as cf
 import gc
-import numpy as np
 
-from farms import SOLAR_CONSTANT, SZA_LIM
 import farms.utilities as ut
+import numpy as np
+from farms import SOLAR_CONSTANT, SZA_LIM
 
 
 def op_mass(p, am, cosz, z):
@@ -788,19 +788,26 @@ def rest2_tuuclr(p, albedo, ssa, radius, alpha, ozone, w, parallel=False,
     Parameters
     ----------
     p : np.ndarray
-        See rest2 doc string for description.
+        Surface pressure (mbar). (mbar is same as hPa)
     albedo : np.ndarray
-        See rest2 doc string for description.
+        Ground albedo.
     ssa : np.ndarray
-        See rest2 doc string for description.
+        aerosol single-scattering albedo at a representative wavelength of
+        about 700 nm. Use -9.99 or any other NEGATIVE value if unknown
+        (will default to 0.92 if a negative value is input)
     radius : np.ndarray
-        See rest2 doc string for description.
+        Sun-earth radius vector, varies between 1.017 in July and
+        0.983 in January.
     alpha : np.ndarray
-        See rest2 doc string for description.
+        Angstrom wavelength exponent, ideally obtained by linear
+        regression of all available spectral AODs between 380 and 1020 nm.
+        Input value will be tested for compliance with the mandatory
+        interval [0, 2.5], and corrected if necessary.
     ozone : np.ndarray
-        See rest2 doc string for description.
+        reduced ozone vertical pathlength (atm-cm)
+        [Note: 1 atm-cm = 1000 DU]
     w : np.ndarray
-        See rest2 doc string for description.
+        Total precip. water (cm).
     parallel : bool
         Flag to each diffuse angle on a seperate core using concurrent futures.
     diffuse_angles : list | tuple

@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "NREL-rest2"
-dynamic = ["version"]
+version = "1.0.2"
 description = "REST2 is the High-performance solar radiation model for cloudless-sky irradiance, illuminance, and photosynthetically active radiation"
 keywords = ["rest2", "NREL"]
 readme = "README.rst"
